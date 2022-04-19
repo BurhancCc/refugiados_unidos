@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="static/style.css">
+  <title>Comakership</title>
+</head>
+
+<body>
+<!-- Header -->
+<section id="header">
+    <div class="header container">
+        <div class="nav-bar">
+        <div class="brand">
+            <a href="#home">
+                <h1>LOGO</h1>
+            </a>
+        </div>
+        <div class="nav-list">
+            <div class="hamburger">
+            <div class="bar"></div>
+            </div>
+            <ul>
+            <li><a href="index.html#home" data-after="Home">Home</a></li>
+            <li><a href="index.html#information" data-after="information">Information</a></li>
+            <li><a href="login" data-after="login">Login</a></li>
+            <li><a href="login" data-after="register">Register</a></li>
+            <li><a href="index.html#contact" data-after="contact">Contact</a></li>	
+            </ul>
+        </div>
+        </div>
+    </div>
+    </section>
+<!-- End Header -->
+
+<!-- Register -->
+<section id="register">
+    <div class="register container">
+      <form action="/register" method="POST">
+        <h1>Register</h1>
+        <div class="form-groups">
+          {{ form.email.label }}
+          {{ form.email(class="form-control") }}
+          <ul>
+            {% for error in form.email.errors %}
+            <li style="color:red">{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="form-groups">
+          {{ form.password.label }}
+          {{ form.password(class="form-control") }}
+          <ul>
+            {% for error in form.password.errors %}
+            <li style="color:red">{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="form-groups">
+          {{ form.repeatPassword.label }}
+          {{ form.repeatPassword(class="form-control") }}
+          <ul>
+            {% for error in form.repeatPassword.errors %}
+            <li style="color:red">{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="form-groups">
+          {{ form.firstName.label }}
+          {{ form.firstName(class="form-control") }}
+          <ul>
+            {% for error in form.firstName.errors %}
+            <li style="color:red">{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="form-groups">
+          {{ form.surname.label }}
+          {{ form.surname(class="form-control") }}
+          <ul>
+            {% for error in form.surname.errors %}
+            <li style="color:red">{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="form-groups">
+          {{ form.country.label }}
+          {{ form.country(class="form-control") }}
+        </div>
+        <div class="form-groups">
+          {{ form.endDate.label }}
+          {{ form.endDate(class="form-control") }}
+          <ul>
+            {% for error in form.endDate.errors %}
+            <li style="color:red">{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <input type="checkbox" id="privacy">
+          <label id="privacy">Privacy policy</label>
+        <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+</section>
+<!-- End Register -->
+
+<!-- Footer -->
+<section id="footer">
+  <div class="footer container">
+    <div class="brand">
+      <h1>Comakership</h1>
+    </div>
+    <h2>Volg ons op</h2>
+    <div class="social-icon">
+      <div class="social-item">
+        <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/facebook-new.png" /></a>
+      </div>
+      <div class="social-item">
+        <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/instagram-new.png" /></a>
+      </div>
+      <div class="social-item">
+        <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/twitter.png" /></a>
+      </div>
+            <div class="social-item">
+        <a href="#"><img src="https://img.icons8.com/color/48/000000/linkedin.png"/></a>
+      </div>
+    </div>
+    <p>Copyright © 2022 comakership. All rights reserved</p>
+  </div>
+</section>
+<!-- End Footer -->
+<script src="static/app.js"></script>
+</body>
+
+</html>

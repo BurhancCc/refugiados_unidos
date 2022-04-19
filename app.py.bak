@@ -1,0 +1,94 @@
+from datetime import date
+from flask import Flask, Blueprint, redirect, render_template, request, url_for
+import re
+from datetime import date, time, datetime
+import pyTigerGraph as tg
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+  title = "Refugiados Unidos"
+  return render_template('index.html', title=title)
+
+@app.route("/test")
+def test():
+  title = "test"
+  return render_template('test.html', title=title)
+
+@app.route("/register", methods=["POST", "GET"])
+def registration():
+  title = "Registration"
+  if request.method == "POST":
+    email = request.form['email']
+    password = request.form['password']
+    repeatPassword = request.form['repeatPassword']
+    firstName = request.form['firstName']
+    surname = request.form['surname']
+    country = request.form['country']
+    startDate = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    endDate = request.form['endDate'].strftime('%Y-%m-%d %H:%M:%S')
+    if verifyRegistration(email, password, repeatPassword, firstName, surname, country, endDate) == True:
+      runRegistrationQuery(email, password, firstName, surname, country, startDate, endDate)
+      return redirect(url_for("/registered"))
+    else:
+      return render_template('registration.html', title=title)
+  else:
+    return render_template('registration.html', title=title)
+
+@app.route("/login")
+def login():
+  title = "Login"
+  return render_template('login.html', title=title)
+
+@app.route("/registered", methods=["POST", "GET"])
+def registered():
+  title = "registered"
+  return render_template('registered.html', title=title)
+
+def verifyRegistration(email, password, repeatPassword, firstName, surname, country, endDate):
+  regex = "[a-zA-Z]"
+  regexSmall = "[a-z]"
+  regexCapital= "[A-Z]"
+  regexNumbers = "[0-9]"
+  regexEmail = "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
+  minPasswordLen = 8
+  if password != repeatPassword:
+    return False
+  if(re.fullmatch(regexEmail, email)):
+    return False
+  if (re.findall(regexSmall, password) == [] or re.findall(regexNumbers, password) == []
+          or re.findall(regexCapital, password) == [] or len(password) < minPasswordLen):
+          return False
+  if re.findall(regex, firstName) == [] or re.findall(regex, surname):
+    return False
+  if endDate < date.today() or endDate == date.today():
+    return False
+  return True
+
+def runRegistrationQuery(email, password, firstName, surname, country, startDate, endDate):
+  TG_HOST = "https://refugiados-unidos.i.tgcloud.io/"
+  TG_USERNAME = "tigergraph"
+  TG_PASSWORD = "Abcd1234!"
+  TG_GRAPHNAME = "RefugiadosUnidos"
+  latitude = 0
+  longtitude = 0
+  userRole = 1
+  conn = tg.TigerGraphConnection(TG_HOST, TG_GRAPHNAME, TG_USERNAME, TG_PASSWORD)
+  token = conn.getToken("i3u0jpebhih97seb3kgu1omg9dptcpvs")
+  data = {"email": email,
+  "password": password,
+  "firstname": firstName,
+  "surname": surname,
+  "latitude": latitude,
+  "longtitude": longtitude,
+  "country": country,
+  "userroleID": userRole,
+  "registrationDate": startDate,
+  "endDate": endDate}
+  ls = conn.gsql("ls", options=[])
+
+  conn.runInstalledQuery("Registration", data)
+
+if __name__ == "__main__":
+  app.run(debug=True)
