@@ -22,12 +22,13 @@
             <div class="hamburger">
             <div class="bar"></div>
             </div>
-            <ul>
-            <li><a href="index.html#home" data-after="Home">Home</a></li>
-            <li><a href="index.html#information" data-after="information">Information</a></li>
-            <li><a href="login" data-after="login">Login</a></li>
-            <li><a href="login" data-after="register">Register</a></li>
-            <li><a href="index.html#contact" data-after="contact">Contact</a></li>	
+            <ul>           
+              <li><a href="/#home" data-after="Home">Home</a></li>
+              <li><a href="/#information" data-after="information">Information</a></li>
+              <li><a href="services" data-after="#services">Services</a></li>
+              <li><a href="login" data-after="login">Login</a></li>
+              <li><a href="register" data-after="register">Register</a></li>
+              <li><a href="/#contact" data-after="contact">Contact</a></li>	
             </ul>
         </div>
         </div>
@@ -39,50 +40,49 @@
 <section id="register">
     <div class="register container">
       <form action="/register" method="POST">
-        <h1>Register</h1>
         <div class="form-groups">
-          {{ form.email.label }}
-          {{ form.email(class="form-control") }}
-          <ul>
-            {% for error in form.email.errors %}
-            <li style="color:red">{{ error }}</li>
-            {% endfor %}
-          </ul>
+        {{ form.email.label }}
+        {{ form.email(class="form-control") }}
+        <ul> 
+          {% for error in form.email.errors %} 
+          <li style="color:red">{{ error }}</li> 
+          {% endfor %} 
+        </ul>
         </div>
         <div class="form-groups">
           {{ form.password.label }}
           {{ form.password(class="form-control") }}
-          <ul>
-            {% for error in form.password.errors %}
-            <li style="color:red">{{ error }}</li>
-            {% endfor %}
+          <ul> 
+            {% for error in form.password.errors %} 
+            <li style="color:red">{{ error }}</li> 
+            {% endfor %} 
           </ul>
         </div>
         <div class="form-groups">
           {{ form.repeatPassword.label }}
           {{ form.repeatPassword(class="form-control") }}
-          <ul>
-            {% for error in form.repeatPassword.errors %}
-            <li style="color:red">{{ error }}</li>
-            {% endfor %}
+          <ul> 
+            {% for error in form.repeatPassword.errors %} 
+            <li style="color:red">{{ error }}</li> 
+            {% endfor %} 
           </ul>
         </div>
         <div class="form-groups">
           {{ form.firstName.label }}
           {{ form.firstName(class="form-control") }}
-          <ul>
-            {% for error in form.firstName.errors %}
-            <li style="color:red">{{ error }}</li>
-            {% endfor %}
+          <ul> 
+            {% for error in form.firstName.errors %} 
+            <li style="color:red">{{ error }}</li> 
+            {% endfor %} 
           </ul>
         </div>
         <div class="form-groups">
           {{ form.surname.label }}
           {{ form.surname(class="form-control") }}
-          <ul>
-            {% for error in form.surname.errors %}
-            <li style="color:red">{{ error }}</li>
-            {% endfor %}
+          <ul> 
+            {% for error in form.surname.errors %} 
+            <li style="color:red">{{ error }}</li> 
+            {% endfor %} 
           </ul>
         </div>
         <div class="form-groups">
@@ -92,15 +92,15 @@
         <div class="form-groups">
           {{ form.endDate.label }}
           {{ form.endDate(class="form-control") }}
-          <ul>
-            {% for error in form.endDate.errors %}
-            <li style="color:red">{{ error }}</li>
-            {% endfor %}
-          </ul>
+          <ul> 
+            {% for error in form.endDate.errors %} 
+            <li style="color:red">{{ error }}</li> 
+            {% endfor %} 
+          </ul> 
         </div>
         <input type="checkbox" id="privacy">
           <label id="privacy">Privacy policy</label>
-        <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" action="Submit">Submit</button>
       </form>
     </div>
 </section>

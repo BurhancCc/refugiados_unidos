@@ -1,9 +1,8 @@
 from flask import Flask, Blueprint, redirect, render_template, request, url_for
 from datetime import date
-from select import select
 import re
+import pyTigerGraph  as tg
 from datetime import date, time, datetime
-import pyTigerGraph as tg
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, EmailField, DateField, SelectField
 from wtforms.validators import InputRequired, Email, Length, EqualTo, ValidationError, Optional
@@ -53,8 +52,8 @@ class RegistrationForm(FlaskForm):
 
 class LoginForm(FlaskForm):
   inputRequired = InputRequired(message="This box can't be empty!")
-  email = EmailField('email', validators=[inputRequired])
-  password = PasswordField('password', validators=[inputRequired])
+  email = EmailField('email', render_kw={"placeholder": "email"}, validators=[inputRequired])
+  password = PasswordField('password', render_kw={"placeholder": "password"}, validators=[inputRequired])
 
 @app.route("/")
 def index():
@@ -116,10 +115,13 @@ def register():
   title = "registered"
   return render_template('register.html', title=title, names="names", form=form, message="message")
 
-@app.route("/login")
+@app.route("/login", methods=["POST", "GET"])
 def login():
   title = "Login"
-  return render_template('login.html', title=title)
+  form = LoginForm()
+  if form.validate_on_submit():
+    return redirect(url_for("services"))
+  return render_template('login.html', form=form, title=title, message="message")
 
 @app.route("/registered", methods=["POST", "GET"])
 def registered():
@@ -127,6 +129,11 @@ def registered():
   if form.validate_on_submit():
     return redirect(url_for('.index'))
   return redirect(url_for('register'))
+
+@app.route("/services", methods=["POST", "GET"])
+def services():
+  title = "Services"
+  return render_template('services.html', title=title)
 
 if __name__ == "__main__":
   app.run(debug=True)

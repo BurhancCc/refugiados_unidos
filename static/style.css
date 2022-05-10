@@ -53,7 +53,7 @@ p {
 }
 .cta:hover {
     color:black;
-    background-color: #BAD0FF;
+    background-color: #0066cc;
 }
 .brand h1 {
 	font-size: 3rem;
@@ -69,11 +69,11 @@ p {
 	top: 0;
 	width: 100vw;
 	height: auto;
-	background-color: #BAD0FF;
+	background-color: #0066cc;
 }
 #header .header {
 	min-height: 8vh;
-	background-color: #BAD0FF;
+	background-color: #0066cc;
 }
 #header .nav-bar {
 	display: flex;
@@ -87,7 +87,7 @@ p {
 #header .nav-list ul {
 	list-style: none;
 	position: absolute;
-	background-color: #BAD0FF;
+	background-color: #0066cc;
 	width: 100vw;
 	height: 100vh;
 	left: 100%;
@@ -216,7 +216,7 @@ p {
 
 /* information Section */
 #information{
-    background-color: #F8FFED;
+    background-color: #ffcc00;
 }
 #information .information {
 	flex-direction: column;
@@ -280,7 +280,7 @@ p {
 
 /* contact Section */
 #contact{
-    background-color: #F8FFED;
+    background-color: #ffcc00;
 }
 #contact .contact {
 	flex-direction: column;
@@ -323,7 +323,7 @@ p {
 
 /* Footer */
 #footer {
-	background-color: #BAD0FF;
+	background-color: #0066cc;
 }
 #footer .footer {
 	min-height: 200px;
@@ -352,7 +352,7 @@ p {
 
 /* Login */
 #login{
-	background-color: #F8FFED;
+	background-color: #ffcc00;
 }
 .sign-in{
 	max-width: 300px;
@@ -374,7 +374,7 @@ p {
 	width: 100%;
 }
 .btn{
-	background-color: #BAD0FF;
+	background-color: #0066cc;
 	border: 0;
 	border-radius: 30px;
 	color: black;
@@ -409,7 +409,7 @@ p {
 /* End Login */
 /* Register */
 #register{
-	background-color: #F8FFED;
+	background-color: #ffcc00;
 }
 #register h1{
 	display: block;
@@ -432,6 +432,18 @@ p {
 	width: 100%;
 }
 /* End Register */
+
+/* Services */
+#diensten{
+	background-color: #ffcc00;
+}
+Iframe{
+	width: 100%;
+	height: 400px;
+	padding: 10px;
+	text-decoration: none;
+}
+/* End Services */
 
 /* Media Query For Tablet */
 @media only screen and (min-width: 768px) {
@@ -480,6 +492,12 @@ p {
 		text-align: left;
 		padding-left: 20px;
 	}
+	Iframe{
+		width: 100%;
+		height: 550px;
+		padding: 10px;
+		text-decoration: none;
+	}
 }
 
 /* Media Query For Desktop */
@@ -506,6 +524,12 @@ p {
 	#information .information-bottom .information-item {
 		flex-basis: 22%;
 		margin: 1.5%;
+	}
+	Iframe{
+		width: 100%;
+		height: 620px;
+		padding: 10px;
+		text-decoration: none;
 	}
 }
 
