@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="static/style.css">
   <title>Comakership</title>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
 </head>
 
 <body>
@@ -22,13 +24,13 @@
           <div class="hamburger">
             <div class="bar"></div>
           </div>
-          <ul>           
+          <ul>
             <li><a href="/#home" data-after="Home">Home</a></li>
             <li><a href="/#information" data-after="information">Information</a></li>
             <li><a href="services" data-after="#services">Services</a></li>
             <li><a href="login" data-after="login">Login</a></li>
             <li><a href="register" data-after="register">Register</a></li>
-            <li><a href="/#contact" data-after="contact">Contact</a></li>	
+            <li><a href="/#contact" data-after="contact">Contact</a></li>
           </ul>
         </div>
       </div>
@@ -38,10 +40,27 @@
 
   <!-- Services -->
   <section id="diensten">
-      <div class="diensten container">
-        <iframe src="http://condast.com:8080/churuata/map" id="myIframe"></iframe>
-      </div>
-  <!-- End Services -->
+    <div id='map' style='width: 100%; height: 500px;'></div>
+    <script>
+      mapboxgl.accessToken = 'pk.eyJ1IjoiYnVyaGFuMCIsImEiOiJjbDNhOG9pMTUwMzkxM2NvaWowN2dtcmpmIn0.zc9H-ZUCIJj9EJQBATi7Yg';
+      const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [24.086445574860257, 49.933438392892526],
+        zoom: 5
+      });
+
+      // Create a default Marker and add it to the map.
+      const marker1 = new mapboxgl.Marker()
+        .setLngLat([23.493595655835417, 51.13966431110757])
+        .addTo(map);
+
+      // Create a default Marker, colored black, rotated 45 degrees.
+      const marker2 = new mapboxgl.Marker({ color: 'black', rotation: 45 })
+        .setLngLat([22.174810745744836, 48.40728962481247])
+        .addTo(map);
+    </script>
+    <!-- End Services -->
   </section>
   <!-- Footer -->
   <section id="footer">
@@ -60,8 +79,8 @@
         <div class="social-item">
           <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/twitter.png" /></a>
         </div>
-			  <div class="social-item">
-          <a href="#"><img src="https://img.icons8.com/color/48/000000/linkedin.png"/></a>
+        <div class="social-item">
+          <a href="#"><img src="https://img.icons8.com/color/48/000000/linkedin.png" /></a>
         </div>
       </div>
       <p>Copyright © 2022 comakership. All rights reserved</p>
@@ -70,4 +89,5 @@
   <!-- End Footer -->
   <script src="static/app.js"></script>
 </body>
+
 </html>
